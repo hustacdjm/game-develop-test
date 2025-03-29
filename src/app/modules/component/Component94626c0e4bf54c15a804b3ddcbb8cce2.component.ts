@@ -10,16 +10,16 @@ import { ElementRef, OnInit, OnDestroy } from '@angular/core';
 import Phaser from 'phaser';
 
 @Component({
-    selector     : 'Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5',
+    selector     : 'Component94626c0e4bf54c15a804b3ddcbb8cce2',
     standalone   : true,
-    templateUrl  : './Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5.component.html',
+    templateUrl  : './Component94626c0e4bf54c15a804b3ddcbb8cce2.component.html',
     encapsulation: ViewEncapsulation.None,
     imports:[
        CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule,MatRadioModule
     ]
     
 })
-export class Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5 implements OnInit, OnDestroy 
+export class Component94626c0e4bf54c15a804b3ddcbb8cce2 implements OnInit, OnDestroy 
 {
 
     @Input() data:any;

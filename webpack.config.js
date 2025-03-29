@@ -8,7 +8,7 @@ sharedMappings.register(
   path.join(__dirname, 'tsconfig.json'),
   [/* mapped paths to share */]);
 
-const REGISTER_KEY='Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5';
+const REGISTER_KEY='Component94626c0e4bf54c15a804b3ddcbb8cce2';
 
 module.exports = {
 

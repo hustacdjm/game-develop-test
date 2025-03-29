@@ -35,16 +35,27 @@ export class LandingHomeComponent implements AfterContentInit
    
 
     template={
-      "name": 'React Sample component',
-      "description":'react sample component',
-      "version": 'v1.0'
-    };
+  "name" : "GamePackTest",
+  "description" : "game with learning pack",
+  "version" : "1.0"
+};
   
     reactiveComponent={
-
-      
-
-    };
+  "component" : {
+    "componentTemplateId" : "67e7070a659bbd6b9c344ecb",
+    "templateDeployId" : null,
+    "content" : {
+      "title" : "Pharse Game",
+      "x0" : 100,
+      "y0" : 300
+    },
+    "ui" : { },
+    "scores" : [ ]
+  },
+  "runtime" : {
+    "data" : { }
+  }
+};
 
 
 
@@ -57,8 +68,8 @@ export class LandingHomeComponent implements AfterContentInit
    
     async StartTest(){
       
-        const componentModule = await import('../component/Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5.component');
-        const TemplateComponent = componentModule['Component3121f9dfc5bb427ca055e6521008c7f95129a609d19b4df48659566e00894fa5'];
+        const componentModule = await import('../component/Component94626c0e4bf54c15a804b3ddcbb8cce2.component');
+        const TemplateComponent = componentModule['Component94626c0e4bf54c15a804b3ddcbb8cce2'];
 
         this.testContainer.clear();
 
