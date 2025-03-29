@@ -49,7 +49,7 @@ export class Component94626c0e4bf54c15a804b3ddcbb8cce2 implements OnInit, OnDest
           physics: {
             default: 'arcade',
             arcade: {
-              gravity: { x: 150, y: 300 },
+              gravity: { x: 150, y: 300 },  //set the data from input data
               debug: false
             }
           },
