@@ -63,8 +63,8 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
         const config: Phaser.Types.Core.GameConfig = {
           type: Phaser.AUTO,
           parent: container,
-          width: 800,
-          height: 600,
+          width: 400,
+          height: 300,
           physics: {
             default: 'arcade',
             arcade: {
@@ -80,6 +80,7 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
            // Important for Angular compatibility:
           callbacks: {
             postBoot: () => {
+              console.log("post boot");
               this.game.canvas.style.width = '100%';
               this.game.canvas.style.height = '100%';
             }
