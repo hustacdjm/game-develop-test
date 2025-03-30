@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -22,7 +22,10 @@ import Phaser from 'phaser';
 export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b implements OnInit, OnDestroy 
 {
 
+
     @Input() data:any;
+    @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
+    
 
     private game!: Phaser.Game;
     /**
@@ -43,7 +46,7 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
       private initGame() {
         const config: Phaser.Types.Core.GameConfig = {
           type: Phaser.AUTO,
-          parent: 'game-container',
+          parent: this.gameContainer.nativeElement,
           width: 800,
           height: 600,
           physics: {
@@ -57,6 +60,13 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
             preload: this.preload,
             create: this.create,
             update: this.update
+          },
+           // Important for Angular compatibility:
+          callbacks: {
+            postBoot: () => {
+              this.game.canvas.style.width = '100%';
+              this.game.canvas.style.height = '100%';
+            }
           }
         };
     
