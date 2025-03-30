@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ScoreComponentServiceClient {
           
-  component_api_key="eyJhbGciOiJIUzI1NiJ9.eyJvd25lciI6Imh1c3RhY2RqbUBnbWFpbC5jb20iLCJyb2xlIjoic2VsZiIsIm93bmVyTmFtZSI6IkxURHJlYW0gUHJvMiIsImV4cCI6MTc0MzMwMzMwMywib3BlcmF0b3JOYW1lIjoiTFREcmVhbSBQcm8yIiwiaWF0IjoxNzQzMjk5NzAzLCJvcGVyYXRvciI6Imh1c3RhY2RqbUBnbWFpbC5jb20ifQ.UnilschWx1iW9QBpsoBlRgv5iQGSPaSqyjJuqliK-Lw";
+  component_api_key="eyJhbGciOiJIUzI1NiJ9.eyJvd25lciI6Imh1c3RhY2RqbUBnbWFpbC5jb20iLCJyb2xlIjoic2VsZiIsIm93bmVyTmFtZSI6IkxURHJlYW0gUHJvMiIsImV4cCI6MTc0MzMxMzY1Niwib3BlcmF0b3JOYW1lIjoiTFREcmVhbSBQcm8yIiwiaWF0IjoxNzQzMzEwMDU2LCJvcGVyYXRvciI6Imh1c3RhY2RqbUBnbWFpbC5jb20ifQ.-V1edZvkk95Zq2nAQixzjBoggXuPW5yrkhRcXZMRbMs";
   
   constructor(
   public sanitizer:DomSanitizer,

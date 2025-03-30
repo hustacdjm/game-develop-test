@@ -35,27 +35,12 @@ export class LandingHomeComponent implements AfterContentInit
    
 
     template={
-  "name" : "Phaser Game",
-  "description" : "we add gamecontainer for phaser game.",
-  "version" : "2.0"
+  "name" : null,
+  "description" : null,
+  "version" : "3.0"
 };
   
-    reactiveComponent={
-      "component": {
-        "componentTemplateId": "67e7070a659bbd6b9c344ecb",
-        "templateDeployId": null,
-        "content": {
-          "title": "Pharse3 Game",
-          "x0": 10,
-          "y0": 30
-        },
-        "ui": {},
-        "scores": []
-      },
-      "runtime": {
-        "data": {}
-      }
-    };
+    reactiveComponent=null;
 
 
 
@@ -68,8 +53,8 @@ export class LandingHomeComponent implements AfterContentInit
    
     async StartTest(){
       
-        const componentModule = await import('../component/Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b.component');
-        const TemplateComponent = componentModule['Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b'];
+        const componentModule = await import('../component/Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69.component');
+        const TemplateComponent = componentModule['Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69'];
 
         this.testContainer.clear();
 

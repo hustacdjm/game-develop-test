@@ -10,16 +10,16 @@ import { ElementRef, OnInit, OnDestroy } from '@angular/core';
 import Phaser from 'phaser';
 
 @Component({
-    selector     : 'Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b',
+    selector     : 'Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69',
     standalone   : true,
-    templateUrl  : './Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b.component.html',
+    templateUrl  : './Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69.component.html',
     encapsulation: ViewEncapsulation.None,
     imports:[
        CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule,MatRadioModule
     ]
     
 })
-export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b implements OnInit, OnDestroy , AfterViewInit
+export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 implements OnInit, OnDestroy , AfterViewInit
 {
 
 
