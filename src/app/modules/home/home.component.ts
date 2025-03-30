@@ -35,12 +35,27 @@ export class LandingHomeComponent implements AfterContentInit
    
 
     template={
-  "name" : null,
-  "description" : null,
+  "name" : "Phaser Game",
+  "description" : "we add gamecontainer for phaser game.",
   "version" : "2.0"
 };
   
-    reactiveComponent=null;
+    reactiveComponent={
+      "component": {
+        "componentTemplateId": "67e7070a659bbd6b9c344ecb",
+        "templateDeployId": null,
+        "content": {
+          "title": "Pharse3 Game",
+          "x0": 10,
+          "y0": 30
+        },
+        "ui": {},
+        "scores": []
+      },
+      "runtime": {
+        "data": {}
+      }
+    };
 
 
 

@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -19,14 +19,14 @@ import Phaser from 'phaser';
     ]
     
 })
-export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b implements OnInit, OnDestroy 
+export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b implements OnInit, OnDestroy , AfterViewInit
 {
 
 
     @Input() data:any;
-    @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
     
-
+    @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
+        
     private game!: Phaser.Game;
     /**
      * Constructor
@@ -34,7 +34,16 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
      constructor(public sanitizer:DomSanitizer,private elementRef: ElementRef){}
 
      ngOnInit(): void {
-        this.initGame();
+      console.log(this.gameContainer);
+      }
+
+      ngAfterViewInit(): void {
+
+        console.log(this.gameContainer);
+
+        if (this.gameContainer) {
+          this.initGame(this.gameContainer.nativeElement);
+        }
       }
     
       ngOnDestroy(): void {
@@ -43,16 +52,23 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
         }
       }
     
-      private initGame() {
+      private initGame(container: HTMLElement) {
+
+        console.log("init:" + container);
+        console.log("input data");
+        console.log(this.data);
+
+        if (this.game) return;
+
         const config: Phaser.Types.Core.GameConfig = {
           type: Phaser.AUTO,
-          parent: this.gameContainer.nativeElement,
+          parent: container,
           width: 800,
           height: 600,
           physics: {
             default: 'arcade',
             arcade: {
-              gravity: { x: 150, y: 300 },  //set the data from input data
+              gravity: { x: this.data.component.content.x0, y: this.data.component.content.y0},  //set the data from input data
               debug: false
             }
           },
@@ -71,6 +87,7 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
         };
     
         this.game = new Phaser.Game(config);
+        this.game.registry.set('gameData', this.data);
       }
     
       private preload(this: Phaser.Scene) {
@@ -78,7 +95,16 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
       }
     
       private create(this: Phaser.Scene) {
-        const ball = this.physics.add.sprite(400, 100, 'ball');
+    
+        const gameData = this.registry.get('gameData');
+        console.log('Registry data:', gameData);
+      
+        this.add.text(100, 100,gameData.component.content.title, { 
+          fontSize: '32px', 
+          color: '#ffffff' 
+        });
+
+        const ball = this.physics.add.sprite( gameData.component.content.x0, gameData.component.content.y0, 'ball');
         ball.setBounce(0.8);
         ball.setCollideWorldBounds(true);
       }
