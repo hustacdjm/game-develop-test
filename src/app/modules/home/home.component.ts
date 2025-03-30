@@ -35,27 +35,12 @@ export class LandingHomeComponent implements AfterContentInit
    
 
     template={
-  "name" : "GamePackTest",
-  "description" : "game with learning pack",
-  "version" : "1.0"
+  "name" : null,
+  "description" : null,
+  "version" : "2.0"
 };
   
-    reactiveComponent={
-  "component" : {
-    "componentTemplateId" : "67e7070a659bbd6b9c344ecb",
-    "templateDeployId" : null,
-    "content" : {
-      "title" : "Pharse Game",
-      "x0" : 100,
-      "y0" : 300
-    },
-    "ui" : { },
-    "scores" : [ ]
-  },
-  "runtime" : {
-    "data" : { }
-  }
-};
+    reactiveComponent=null;
 
 
 
@@ -68,8 +53,8 @@ export class LandingHomeComponent implements AfterContentInit
    
     async StartTest(){
       
-        const componentModule = await import('../component/Component94626c0e4bf54c15a804b3ddcbb8cce2.component');
-        const TemplateComponent = componentModule['Component94626c0e4bf54c15a804b3ddcbb8cce2'];
+        const componentModule = await import('../component/Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b.component');
+        const TemplateComponent = componentModule['Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b'];
 
         this.testContainer.clear();
 
