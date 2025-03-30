@@ -108,6 +108,8 @@ export class Component67e83f1ec7d45c10b232728771c830dec0e2498789795b3415e4e58b i
         const ball = this.physics.add.sprite( gameData.component.content.x0, gameData.component.content.y0, 'ball');
         ball.setBounce(0.8);
         ball.setCollideWorldBounds(true);
+
+        gameData.runtime.data.times = 1;
       }
     
       private update(this: Phaser.Scene) {
