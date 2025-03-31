@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterLink } from '@angular/router';
+import { LearningComponentDialog } from '../clients/learning-component-dialog/learning-component.dialog';
 
 @Component({
     selector     : 'landing-home',
@@ -33,17 +34,41 @@ export class LandingHomeComponent implements AfterContentInit
 
     @ViewChild('test', {read:ViewContainerRef}) testContainer!: ViewContainerRef;
    
+    template = {
+      "name": "GamePackTest",
+      "version": "3.0",
+      "description": "game with learning pack"
+    }
+                              
+    gameComponent = {
+      "component": {
+        "componentTemplateId": "67e7070a659bbd6b9c344ecb",
+        "templateDeployId": null,
+        "content": {
+          "title": "Pharse Game",
+          "x0": 100,
+          "y0": 300
+        },
+        "ui": {},
+        "scores": []
+      },
+      "runtime": {
+        "data": {}
+      },
+      "constants": {}
+    };
 
-    template={
-  "name" : null,
-  "description" : null,
-  "version" : "3.0"
-};
+    env = {
+
+      ScoreUrl: 'http://localhost:8081/v3/edu/ReactiveComponentRuntime/score',
+      GameDataUrl: 'http://localhost:8081/v3/edu/ComponentTemplateDevelop/gameData/67e7070a659bbd6b9c344ecb',       //this just for test
+      GameLearning: LearningComponentDialog,
+      Authorized: null
+
   
-    reactiveComponent=null;
+    };
 
-
-
+    
     async ngAfterContentInit() {
       
       this.StartTest();
@@ -62,7 +87,8 @@ export class LandingHomeComponent implements AfterContentInit
 
         console.log('container:' + this.testContainer);
         const fmComponentRef  = this.testContainer!.createComponent(componentFactory);
-        (fmComponentRef as any).instance.data = this.reactiveComponent;
+        (fmComponentRef as any).instance.data = this.gameComponent;
+        (fmComponentRef as any).instance.env = this.env;
         fmComponentRef.changeDetectorRef.markForCheck();
 
     }

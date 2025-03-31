@@ -38,7 +38,7 @@ export class ScoreComponentComponent
     if(this.data.component.scores && this.data.comopnent.scores.length>0){
 
       const scoreId = this.data.component.scores[0];
-      this.scoreComponentServiceClient.Score(this.data, scoreId, this.env).subscribe(
+      this.scoreComponentServiceClient.Score(this.data, scoreId).subscribe(
           scoreResponse=>{
               console.log(scoreResponse);
               this.data.runtime.score= scoreResponse.runtime.score;

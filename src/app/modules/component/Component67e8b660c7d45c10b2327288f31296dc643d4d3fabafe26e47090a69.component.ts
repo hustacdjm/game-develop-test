@@ -8,6 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ElementRef, OnInit, OnDestroy } from '@angular/core';
 import Phaser from 'phaser';
+import { ScoreComponentServiceClient } from '../clients/score.component.client';
+import {MatDialog} from '@angular/material/dialog';
+import { LearningComponentDialog } from '../clients/learning-component-dialog/learning-component.dialog';
 
 @Component({
     selector     : 'Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69',
@@ -15,15 +18,15 @@ import Phaser from 'phaser';
     templateUrl  : './Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69.component.html',
     encapsulation: ViewEncapsulation.None,
     imports:[
-       CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule,MatRadioModule
+       CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule,MatRadioModule, MatRadioModule
     ]
     
 })
 export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 implements OnInit, OnDestroy , AfterViewInit
 {
 
-
     @Input() data:any;
+    @Input() env:any;
     
     @ViewChild('gameContainer', { static: true }) gameContainer!: ElementRef;
         
@@ -31,7 +34,15 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
     /**
      * Constructor
      */
-     constructor(public sanitizer:DomSanitizer,private elementRef: ElementRef){}
+     constructor(
+       public scoreComponentServiceClient: ScoreComponentServiceClient ,
+       public sanitizer:DomSanitizer,     
+       private elementRef: ElementRef){
+
+       }
+
+
+
 
      ngOnInit(): void {
       console.log(this.gameContainer);
@@ -40,6 +51,8 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
       ngAfterViewInit(): void {
 
         console.log(this.gameContainer);
+
+        this.scoreComponentServiceClient.env = this.env;
 
         if (this.gameContainer) {
           this.initGame(this.gameContainer.nativeElement);
@@ -76,7 +89,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
             preload: this.preload,
             create: this.create,
             update: this.update
-          },
+          },         
            // Important for Angular compatibility:
           callbacks: {
             postBoot: () => {
@@ -84,34 +97,98 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
               this.game.canvas.style.width = '100%';
               this.game.canvas.style.height = '100%';
             }
-          }
+          }          
         };
     
         this.game = new Phaser.Game(config);
         this.game.registry.set('gameData', this.data);
+        this.game.registry.set("scoreComponentServiceClient", this.scoreComponentServiceClient);
       }
     
       private preload(this: Phaser.Scene) {
-        this.load.image('ball', 'https://phaser.io/content/tutorials/making-your-first-phaser-3-game/part7/assets/sprites/pangball.png');
+        this.load.image('ball', 'https://raw.githubusercontent.com/hustacdjm/images/main/All-backward_nav.png');
+        
       }
     
       private create(this: Phaser.Scene) {
+
+        let currentGameData;
     
         const gameData = this.registry.get('gameData');
         console.log('Registry data:', gameData);
+
+        const scoreComponentServiceClient: ScoreComponentServiceClient = this.registry.get("scoreComponentServiceClient") as ScoreComponentServiceClient;
+        console.log("Register Service:" + scoreComponentServiceClient);
+
+        console.log(scoreComponentServiceClient.env);
       
         this.add.text(100, 100,gameData.component.content.title, { 
-          fontSize: '32px', 
+          fontSize: '12px', 
           color: '#ffffff' 
         });
 
         const ball = this.physics.add.sprite( gameData.component.content.x0, gameData.component.content.y0, 'ball');
         ball.setBounce(0.8);
         ball.setCollideWorldBounds(true);
+
+         // Create a button in Phaser
+        const button = this.add.text(300, 250, 'Open Learning', {
+          fontSize: '12px',
+          color: '#ffffff',
+          backgroundColor: '#4a4a4a',
+          padding: { x: 20, y: 10 }
+        })
+        .setOrigin(0.5)
+        .setInteractive();
+
+        // Button styling for hover effects
+        button.on('pointerover', () => {
+          button.setStyle({ backgroundColor: '#6a6a6a' });
+        });
+
+        button.on('pointerout', () => {
+          button.setStyle({ backgroundColor: '#4a4a6a' });
+        });
+
+        // When button is clicked, emit event to Angular
+        button.on('pointerdown', () => {
+         
+          scoreComponentServiceClient.openDialog().subscribe(result => {
+
+
+            gameData.runtime.data={
+              ...gameData.runtime.data,
+              ...result
+            }
+
+            console.log('Dialog closed with result:', result);
+            // Continue your logic here
+            console.log("continue after close dialog");
+          });
+          
+        });
+
+        //get the game data
+        scoreComponentServiceClient.gameData().subscribe(
+          d=>{
+            console.log(d);
+            currentGameData = d[0];
+            this.add.text(200, 100, d[0].component.content.title, { 
+              fontSize: '12px', 
+              color: '#ffffff' 
+            });
+            
+
+          }
+        )
+
       }
     
       private update(this: Phaser.Scene) {
         // Game logic updates can go here.
+     
       }
+
+
 
 }
