@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { ScoreComponentServiceClient } from '../score.component.client';
+import { GameComponentServiceClient, ScoreComponentServiceClient } from '../game.component.client';
 
 @Component({
     selector     : 'score-component',
@@ -29,7 +29,7 @@ export class ScoreComponentComponent
      */
   constructor(
     public sanitizer:DomSanitizer,
-    public scoreComponentServiceClient: ScoreComponentServiceClient
+    public gameComponentServiceClient: GameComponentServiceClient
     ){}
 
 
@@ -38,7 +38,7 @@ export class ScoreComponentComponent
     if(this.data.component.scores && this.data.comopnent.scores.length>0){
 
       const scoreId = this.data.component.scores[0];
-      this.scoreComponentServiceClient.Score(this.data, scoreId).subscribe(
+      this.gameComponentServiceClient.Score(this.data, scoreId).subscribe(
           scoreResponse=>{
               console.log(scoreResponse);
               this.data.runtime.score= scoreResponse.runtime.score;

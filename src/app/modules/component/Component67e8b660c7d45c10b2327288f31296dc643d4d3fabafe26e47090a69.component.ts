@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ElementRef, OnInit, OnDestroy } from '@angular/core';
 import Phaser from 'phaser';
-import { ScoreComponentServiceClient } from '../clients/score.component.client';
+import { GameComponentServiceClient } from '../clients/game.component.client';
 import {MatDialog} from '@angular/material/dialog';
 import { LearningComponentDialog } from '../clients/learning-component-dialog/learning-component.dialog';
 
@@ -35,7 +35,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
      * Constructor
      */
      constructor(
-       public scoreComponentServiceClient: ScoreComponentServiceClient ,
+       public gameComponentServiceClient: GameComponentServiceClient ,
        public sanitizer:DomSanitizer,     
        private elementRef: ElementRef){
 
@@ -52,7 +52,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
 
         console.log(this.gameContainer);
 
-        this.scoreComponentServiceClient.env = this.env;
+        this.gameComponentServiceClient.env = this.env;
 
         if (this.gameContainer) {
           this.initGame(this.gameContainer.nativeElement);
@@ -102,7 +102,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
     
         this.game = new Phaser.Game(config);
         this.game.registry.set('gameData', this.data);
-        this.game.registry.set("scoreComponentServiceClient", this.scoreComponentServiceClient);
+        this.game.registry.set("scoreComponentServiceClient", this.gameComponentServiceClient);
       }
     
       private preload(this: Phaser.Scene) {
@@ -117,10 +117,10 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
         const gameData = this.registry.get('gameData');
         console.log('Registry data:', gameData);
 
-        const scoreComponentServiceClient: ScoreComponentServiceClient = this.registry.get("scoreComponentServiceClient") as ScoreComponentServiceClient;
-        console.log("Register Service:" + scoreComponentServiceClient);
+        const gameComponentServiceClient: GameComponentServiceClient = this.registry.get("scoreComponentServiceClient") as GameComponentServiceClient;
+        console.log("Register Service:" + gameComponentServiceClient);
 
-        console.log(scoreComponentServiceClient.env);
+        console.log(gameComponentServiceClient.env);
       
         this.add.text(100, 100,gameData.component.content.title, { 
           fontSize: '12px', 
@@ -153,7 +153,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
         // When button is clicked, emit event to Angular
         button.on('pointerdown', () => {
          
-          scoreComponentServiceClient.openDialog().subscribe(result => {
+          gameComponentServiceClient.openDialog().subscribe(result => {
 
 
             gameData.runtime.data={
@@ -169,7 +169,7 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
         });
 
         //get the game data
-        scoreComponentServiceClient.gameData().subscribe(
+        gameComponentServiceClient.gameData().subscribe(
           d=>{
             console.log(d);
             currentGameData = d[0];
