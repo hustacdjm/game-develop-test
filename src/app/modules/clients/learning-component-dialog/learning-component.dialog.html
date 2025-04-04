@@ -1,11 +1,13 @@
 <h2 mat-dialog-title>Game Learning Data</h2>
 <mat-dialog-content class="mat-typography">
   
+<ng-container *ngFor="let reactiveComponent of data.reactiveComponents">
 <pre>
 
-    {{data.component.content | json}}
+    {{reactiveComponent.component.content | json}}
 
 </pre>
+</ng-container>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -69,7 +69,7 @@ openDialog(): Observable<any> {
   return this.gameData().pipe(
     switchMap(d => {
       console.log(d);
-      const dialogRef = this.dialog.open(this.env.GameLearning, { data: d[0] });
+      const dialogRef = this.dialog.open(this.env.GameLearning, { data: {reactiveComponents: d} });
       return dialogRef.afterClosed();
     })
   );
