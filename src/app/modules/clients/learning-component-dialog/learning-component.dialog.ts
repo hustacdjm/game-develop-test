@@ -29,7 +29,7 @@ export class LearningComponentDialog {
   }
 
   submit(){
-    this.dialogRef.close({blood: 3, skills: 2});
+    this.dialogRef.close({points: 3});
   }
 
 }

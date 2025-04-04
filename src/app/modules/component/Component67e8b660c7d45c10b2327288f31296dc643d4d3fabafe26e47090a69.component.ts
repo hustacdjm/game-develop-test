@@ -155,12 +155,12 @@ export class Component67e8b660c7d45c10b2327288f31296dc643d4d3fabafe26e47090a69 i
          
           gameComponentServiceClient.openDialog().subscribe(result => {
 
-
             gameData.runtime.data={
               ...gameData.runtime.data,
               ...result
             }
 
+            
             console.log('Dialog closed with result:', result);
             // Continue your logic here
             console.log("continue after close dialog");
