@@ -62,7 +62,7 @@ export class LandingHomeComponent implements AfterContentInit
 
       ScoreUrl: 'http://localhost:8081/v3/edu/ReactiveComponentRuntime/score',
       GameDataUrl: 'http://localhost:8081/v3/edu/ComponentTemplateDevelop/gameData/67e7070a659bbd6b9c344ecb',       //this just for test
-      GameLearning: LearningComponentDialog,
+      GameLearning: LearningComponentDialog,  //check the type pass
       Authorized: null
 
   
